@@ -1,0 +1,4 @@
+myblog/public
+myblog/node_modules
+myblog/.deploy_git
+myblog/scaffolds
