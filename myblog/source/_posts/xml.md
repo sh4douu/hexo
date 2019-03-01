@@ -132,7 +132,7 @@ ii.作为外部引用的例子：`<!DOCTYPE root-element SYSTEM "filename">`
 
 **实体**是用于定义引用普通文本或特殊字符的快捷方式的变量。
 
-**实体引用**是对实体的引用。引用后会获得实体指向的实际值。
+**实体引用**是对实体的引用。引用后会获得实体指向的实际数据。
 
 **实体声明也是在DTD声明中，与元素声明同级。**
 
@@ -140,81 +140,48 @@ i.在文档内部声明实体的例子：`<!ENTITY entity-name "entity-value">`
 
 ```
 <?xml version="1.0"?>
-<!DOCTYPE note [    #定义此文档是 note 类型的文档。
-  <!ELEMENT note (to,from,heading,body)>   #定义note元素有四个元素："to、from、heading、body"
-  <!ELEMENT to (#PCDATA)>
-  <!ELEMENT from (#PCDATA)>
-  <!ELEMENT heading (#PCDATA)>
-  <!ELEMENT body (#PCDATA)>   #定义body元素为"#PCDATA"类型
+<!DOCTYPE note [    
+  <!ELEMENT note ANY>   #定义note元素可以有任意元素。
   
   <!ENTITY entity1 "Be">      #文档内声明
   <!ENTITY entity2 "back.">
 ]>
-<note>
-  <to>Mikasa</to>
-  <from>Allen</from>
-  <heading>Reminder</heading>
-  <body>&entity1; &entity2;</body>
-</note>
+<note>&entity1; &entity2;</note>
 ```
 
-ii.外部声明引用实体的例子：`<!ENTITY entity-name SYSTEM "URI/URL">`
-
-例子1：
+ii.外部声明引用实体的例子：`<!ENTITY entity-name SYSTEM "URI/URL">` or `<!DOCTYPE 根元素 PUBLIC "public_ID" "文件名">`
 
 ```
 <?xml version="1.0"?>
-<!DOCTYPE note [    #定义此文档是 note 类型的文档。
-  <!ELEMENT note (to,from,heading,body)>   #定义note元素有四个元素："to、from、heading、body"
-  <!ELEMENT to (#PCDATA)>
-  <!ELEMENT from (#PCDATA)>
-  <!ELEMENT heading (#PCDATA)>
-  <!ELEMENT body (#PCDATA)>   #定义body元素为"#PCDATA"类型
+<!DOCTYPE note [    
+  <!ELEMENT note ANY>   
   
-  <!ENTITY entity1 SYSTEM "http://www.sakuxa.com/example.dtd">  
+  <!ENTITY entity1 SYSTEM "http://www.sakuxa.com/example.xml">  #system关键字表示外部引用
 ]>
-<note>
-  <to>Mikasa</to>
-  <from>Allen</from>
-  <heading>Reminder</heading>
-  <body>&entity1;</body>
-</note>
+<note> &entity1;</note>
+```
+
+iii.参数实体
+
+参数实体只用于 DTD 和文档的内部子集中。只有在DTD中才能引用参数实体，参数实体的声明和引用都是以百分号%。并且参数实体的引用在DTD是理解解析的，替换文本将变成DTD的一部分。
+
+**记住：%entity; 会被它指向的数据进行直接替换。**
+
+```
+<?xml version="1.0"?>
+<!DOCTYPE note [    
+  <!ELEMENT note ANY>   
+  
+  <!ENTITY % entity1 SYSTEM "http://www.sakuxa.com/example.dtd">
+  %entity1  #会被example.dtd内容替换
+]>
+<note> &entity2;</note>
 ```
 
 `example.dtd`文件内容：
 
 ```
 <!ENTITY entity2 "Be back.">
-```
-
-例子2：
-
-```
-<?xml version="1.0"?>
-<!DOCTYPE note SYSTEM "note.dtd">  #引用外部文件note.dtd
-<note>
-  <to>Mikasa</to>
-  <from>Allen</from>
-  <heading>Reminder</heading>
-  <body>&entity1;</body>
-</note>
-```
-
-`note.dtd`文件内容：
-
-```
-<!ELEMENT note (to,from,heading,body)>
-<!ELEMENT to (#PCDATA)>
-<!ELEMENT from (#PCDATA)>
-<!ELEMENT heading (#PCDATA)>
-<!ELEMENT body (#PCDATA)>
-<!ENTITY entity1 SYSTEM "http://www.sakuxa.com/example.dtd">
-```
-
-`example.dtd`文件内容：
-
-```
-<!ENTITY entity1 "Be back.">
 ```
 
 **注意：** 一个实体由三部分构成: 一个和号 (&), 一个实体名称, 以及一个分号 (;)。
