@@ -1,5 +1,5 @@
 ---
-title: Chapter 1：XSS学习系列之浏览器解析HTML文档
+title: XSS学习系列Chapter 1：浏览器解析HTML文档
 date: 2019-03-07 11:59:02
 tags: 
 	- XSS
@@ -143,6 +143,8 @@ URL解析器也被建模为状态机，文档输入流中的字符可以将其�
 
 URL解析规范：https://url.spec.whatwg.org/
 
+URL地址结构：https://blog.csdn.net/x_nirvana/article/details/50768906
+
 ### 0x02 JavaScript解析器
 
 JavaScript解析与HTML解析的区别在于JavaScript是上下文自由的。
@@ -165,7 +167,7 @@ JavaScript解析与HTML解析的区别在于JavaScript是上下文自由的。
 
 > `Unicode escape sequences will NEVER break out of the string context in JavaScript because they will always be interpreted as string literals.`
 >
-> 即，Unicode转义序列出现在字符串中时，它只会被解释为普通字符，而不会破坏字符串的上下文。例如`\u000A`在Java字符串中会被解释为行终止符，会导致字符串上下文断裂。但在JavaScript中的字符串只会被解释为普通字符。简单说就是不会被解码。
+> 即，Unicode转义序列出现在字符串中时，它只会被解释为普通字符，而不会破坏字符串的上下文。例如`\u000A`在Java字符串中会被解释为行终止符，会导致字符串上下文断裂。但在JavaScript中的字符串只会被解释为普通字符。简单说就是会被解码，但只解释为字符串的一部分。
 
 标识符中（in identifier names）
 
@@ -284,3 +286,5 @@ https://www.attacker-domain.com/2013/04/deep-dive-into-browser-parsing-and-xss.h
 https://security.yirendai.com/news/share/26
 
 https://xz.aliyun.com/t/1556
+
+https://github.com/JnuSimba/MiscSecNotes/blob/master/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC/%E8%A7%A3%E7%A0%81%E9%A1%BA%E5%BA%8F.md
