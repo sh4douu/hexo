@@ -38,7 +38,7 @@ XXEinjector 的目录遍历（`--path`）只能用于Java应用程序。其他�
 
 `--file`：这个参数是必选项，用于指定一个HTTP Request消息的文件。HTTP请求文件中要包含XML，或者可以使用"XXEINJECT"来标记注入点。
 
-> ```
+> ```http
 > POST /pikachu/vul/xxe/xxe_1.php HTTP/1.1
 > Host: 192.168.199.111
 > User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0

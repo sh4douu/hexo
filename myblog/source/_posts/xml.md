@@ -36,7 +36,7 @@ categories:
 
 **一个栗子:**
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <note date="9102/2/28">
   <to>Mikasa</to>
@@ -57,14 +57,14 @@ categories:
 
 例如，如果把字符 "<" 放在 XML 元素中，会发生错误，这是因为解析器会把它当作新元素的开始。
 
-```
+```xml
 <!-- 使用下面会发生错误 -->
 <message>if salary < 1000 then</message>
 ```
 
 为了避免这个错误，用**实体引用**来代替 "<" 字符：
 
-```
+```xml
 <message>if salary &lt; 1000 then</message>
 ```
 
@@ -88,7 +88,7 @@ XML有5个预定义的实体引用：
 
 i.在文档内声明的栗子：`<!DOCTYPE root-element [element-declarations]>`
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note [    #定义此文档是 note 类型的文档。
   <!ELEMENT note (to,from,heading,body)>   #定义note元素有四个元素："to、from、heading、body"
@@ -107,7 +107,7 @@ i.在文档内声明的栗子：`<!DOCTYPE root-element [element-declarations]>`
 
 ii.作为外部引用的例子：`<!DOCTYPE root-element SYSTEM "filename">`
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note SYSTEM "note.dtd">  #引用外部文件note.dtd
 <note>
@@ -120,7 +120,7 @@ ii.作为外部引用的例子：`<!DOCTYPE root-element SYSTEM "filename">`
 
 `note.dtd`文件内容：
 
-```
+```xml-dtd
 <!ELEMENT note (to,from,heading,body)>
 <!ELEMENT to (#PCDATA)>
 <!ELEMENT from (#PCDATA)>
@@ -138,7 +138,7 @@ ii.作为外部引用的例子：`<!DOCTYPE root-element SYSTEM "filename">`
 
 i.在文档内部声明实体的例子：`<!ENTITY entity-name "entity-value">`
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note [    
   <!ELEMENT note ANY>   #定义note元素可以有任意元素。
@@ -151,7 +151,7 @@ i.在文档内部声明实体的例子：`<!ENTITY entity-name "entity-value">`
 
 ii.外部声明引用实体的例子：`<!ENTITY entity-name SYSTEM "URI/URL">` or `<!DOCTYPE 根元素 PUBLIC "public_ID" "文件名">`
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note [    
   <!ELEMENT note ANY>   
@@ -167,7 +167,7 @@ iii.参数实体
 
 **记住：%entity; 会被它指向的数据进行直接替换。**
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note [    
   <!ELEMENT note ANY>   
@@ -180,7 +180,7 @@ iii.参数实体
 
 `example.dtd`文件内容：
 
-```
+```xml-dtd
 <!ENTITY entity2 "Be back.">
 ```
 

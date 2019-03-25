@@ -18,7 +18,7 @@ categories: 语言
 - open函数会创建并返回一个文件对象，作为到计算机一个文件的连接。
 - 调用返回的文件对象的方法，可以操作外部文件。
 
-```
+```python
 f=open('test.txt','w',0,encoding='utf-8')
 ```
 
@@ -45,7 +45,7 @@ f=open('test.txt','w',0,encoding='utf-8')
 - tell()：查看文件当前位置（偏移量）。
 - seek()：改变文件位置到指定偏移量并返回偏移量。
 
-```
+```python
 f.seek(2)   #改变文件的光标到第二个字节处
 ```
 
@@ -55,14 +55,14 @@ f.seek(2)   #改变文件的光标到第二个字节处
 - read()、readline、readlines()都是先将整个文件读到内存当中，若文件很大时，占用大量内存且速度慢。
 - 而从文件当中获取内容的最好方法是根本不读取，使用for循坏文件对象。for循环会每次只读取一行到内存，且内存每次只存在一行。
 
-```
+```python
 for line in f:
     print(line)
 ```
 
 ##### read() #将文件内容读为一个字符串
 
-```
+```python
 f.read()    #读取文件光标后的所有内容
 f.read(2)   #读取文件位置后的2个字符
 ```
@@ -74,7 +74,7 @@ f.read(2)   #读取文件位置后的2个字符
 
 ##### readline() #读取一行为一个字符串
 
-```
+```python
 f.readline()    #读取光标位置到行末
 f.readline(3)   #等同于f.read(3)
 ```
@@ -85,7 +85,7 @@ f.readline(3)   #等同于f.read(3)
 
 ##### readlines() #读取文件的每一行到一个字符串列表
 
-```
+```python
 f.readlines()    #读取光标位置到行末为一个字符串并作为列表的一个元素
 f.readlines(3)   #读取一行到列表中
 ```
@@ -98,7 +98,7 @@ f.readlines(3)   #读取一行到列表中
 
 ##### write() #写入字符串
 
-```
+```python
 f.write('abc')                             #写入字节字符串并返回写入的字符数
 f.write(bytes('abc',encoding='utf-8'))     #写入二进制字符串
 ```
@@ -107,7 +107,7 @@ f.write(bytes('abc',encoding='utf-8'))     #写入二进制字符串
 
 ##### writelines() #将字符串列表内容写入文件
 
-```
+```python
 list=['this','is','aString']
 
 f.writelines(list)
@@ -121,7 +121,7 @@ f.writelines(list)
 - 读到内存修改：如VIM等编辑器就是这种方式，整个文件读到内存，在内存修改后再写回文件中。文件大时肯定效率低。
 - 新建文件方式修改文件：
 
-```
+```python
 #将文件中存在'b'的这行改为'B'
 with open('old.txt') as old,/
     open('new.txt','w') as new:

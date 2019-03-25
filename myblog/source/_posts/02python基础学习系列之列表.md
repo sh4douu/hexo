@@ -18,7 +18,7 @@ categories: 语言
 
 ### 0x01 列表创建
 
-```
+```python
 list=[]
 list=['opaque','super',1,3]
 list=list('opaque')
@@ -30,7 +30,7 @@ list=list('opaque')
 
 ##### 索引：按下标索引元素
 
-```
+```python
 list=['opaque','super',1,3]
 
 list[0]    #返回'opaque'
@@ -43,7 +43,7 @@ list[-1]   #返回3
 
 ##### 切片：按下标切片
 
-```
+```python
 list=['opaque','super',1,3]
 
 usage：
@@ -65,7 +65,7 @@ example:
 
 ##### index() #查元素对应下标
 
-```
+```python
 list=['opaque','super',1,3]
 usage:
     list.index(obj)
@@ -77,7 +77,7 @@ example:
 
 ##### count() #查元素出现的次数
 
-```
+```python
 list=[1,2,1,1,4]
 
 list.count(1)      #返回元素1在列表中出现的次数
@@ -87,13 +87,13 @@ list.count(1)      #返回元素1在列表中出现的次数
 
 ##### append（） #列表最后追加一个元素
 
-```
+```python
 list.append('nick')    #追加'nick'字符串
 ```
 
 ##### insert（） #在指定下标处插入一个元素
 
-```
+```python
 list.insert(2,'sam')   #在下标为2的位置插入'sam'元素
 ```
 
@@ -102,7 +102,7 @@ list.insert(2,'sam')   #在下标为2的位置插入'sam'元素
 
 ##### extend()、+  #列表合并
 
-```
+```python
 list1=[1,2]
 list2=[3,4]
 list3=[5,6]
@@ -118,7 +118,7 @@ list3.extend(list4)   #list4元素追加在list3之后，得到[5,6,7,8]
 
 ##### 索引/分片赋值
 
-```
+```python
 list=[1,2,3,4]
 
 list[1]=5         #修改下标为1的元素的值
@@ -133,7 +133,7 @@ list[1:3]=[5,6]   #切片赋值修改
 
 ##### remove() #删除指定元素
 
-```
+```python
 list=[1,2,3,4,1]
 
 list.remove(1)    #删除第一个元素1
@@ -143,7 +143,7 @@ list.remove(1)    #删除第一个元素1
 
 ##### pop() #删除指定下标的元素
 
-```
+```python
 list=[1,2,3,4,1]
 
 list.pop(2)      #3会被删除且返回3
@@ -154,7 +154,7 @@ list.pop(2)      #3会被删除且返回3
 
 ##### clear() #清空列表
 
-```
+```python
 list=[1,2,3,4]
 
 list.clear()     #列表被清空
@@ -162,7 +162,7 @@ list.clear()     #列表被清空
 
 ##### del #删除索引出来的元素
 
-```
+```python
 list=[1,2,3,4]
 
 del list[0]       #下标为0的元素1被删除
@@ -176,7 +176,7 @@ del list          #删除变量list，整个列表将被删除
 
 ##### reverse() #反转列表元素
 
-```
+```python
 list=[1,2,3]
 
 list.reverse()     #列表变为[3,2,1]
@@ -184,7 +184,7 @@ list.reverse()     #列表变为[3,2,1]
 
 ##### sort() #永久进行排序
 
-```
+```python
 list.sort()
 ```
 
@@ -194,7 +194,7 @@ list.sort()
 
 ##### copy() #拷贝列表
 
-```
+```python
 list1=[1,2,[3,4]]
 list2=list1.copy()
 ```
@@ -206,7 +206,7 @@ list2=list1.copy()
 
 - 列表名变量是指向列表对象的引用，列表又是0个或多个对象的引用。列表的浅拷贝实际上列表名变量成为了不同列表对象引用，但他们的列表对象都是指向相同元素对象的引用。
 
-```
+```python
 list1=[1,2,3]
 list2=list1.copy()
 list3=list1
@@ -228,7 +228,7 @@ list1[1] is list2[1]     #True
 
 #### **二次总结**
 
-```
+```python
 1.列表是可变的序列。
 2.列表是任意对象的有序集合。
 3.列表中的元素实质是列表对象引用了一个或多个其他对象。

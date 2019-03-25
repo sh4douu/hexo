@@ -17,7 +17,7 @@ Python3.0字符串分3中类型：str用于Unicode文本；bytes用于二进制�
 
 #### 1.字符串常量：
 
-```
+```python
 'string'
 "string"
 '''string'''
@@ -38,7 +38,7 @@ b'string'     #bytes字符串
 
 #### 3.字符串格式化：
 
-```
+```python
 "this is %s" %'collision'               #字符串形式
 "%s is %s boy"%("collision","good")     #元组形式
 "%(x)d,%(y)d"%{"x":1,"y":2}             #字典形式
@@ -46,7 +46,7 @@ b'string'     #bytes字符串
 
 format格式化
 
-```
+```python
 'a{}c{}'.format('b','d')
 'a{0}c{1}'.format('b','d')
 'a{name}c{age}'.format(name='b',age='d')
@@ -55,7 +55,7 @@ format格式化
 
 ### 0x02 字符串方法：	
 
-```
+```python
 查找：
 	count()          #返回字符或字符串在字符串中出现的次数
 	find()、rfind()  #查找字符或字符串返回第一次出现时的下标
@@ -96,7 +96,7 @@ format格式化
 
 ##### capitalize() #将字符串首字符大写
 
-```
+```python
 'abc'.capitalize()   #返回'Abc'
 ```
 
@@ -104,7 +104,7 @@ format格式化
 
 ##### center() #居中字符串并填充
 
-```
+```python
 'abc'.center(50)      #居中字符串，不足50个字符用空格填充
 'abc'.center(50,'-')  #字符串不足50个字符时，用'-'在两边进行填充
 ```
@@ -115,7 +115,7 @@ format格式化
 
 ##### count() #返回字符或字符串在字符串中出现的次数
 
-```
+```python
 'abcac'.count('a')     #返回2
 'abcacac'.count('ac')  #返回2
 ```
@@ -124,7 +124,7 @@ format格式化
 
 ##### encode() #对字符串进行编码
 
-```
+```python
 'abc'.encode('utf-8')   #等同于b'abc',因为默认编码utf-8
 'abc'.encode('gb2312')
 ```
@@ -133,7 +133,7 @@ format格式化
 
 ##### startwith()、endwith() #判断字符串开始与结尾
 
-```
+```python
 'abc'.startwith('ab')  #返回True
 'abc'.endwith('bc')    #返回True
 ```
@@ -142,7 +142,7 @@ format格式化
 
 ##### find()、rfind() #查找字符串返回下标
 
-```
+```python
 'abcd'.find('bc')    #返回2
 'abccd'.rfind('c')   #返回最右边c的下标3
 ```
@@ -152,7 +152,7 @@ format格式化
 
 ##### format()、format_map()#字符串格式化
 
-```
+```python
 'a{}c{}'.format('b','d')
 'a{name}c{age}'.format(name='b',age='d')
 'a{name}c{age}'.format_map({'name':'b','age':'d'})
@@ -162,7 +162,7 @@ format格式化
 
 ##### index() #返回字符或字符串在字符串中的下标
 
-```
+```python
 'abc'.index('b')    #返回1
 ```
 
@@ -170,7 +170,7 @@ format格式化
 
 ##### isalnum() #判断字符串是否是字母或数字组成
 
-```
+```python
 'abc123'.isalnum()  #True
 'abc'.isalnum()     #True
 '123'.isalnum()     #True
@@ -180,27 +180,27 @@ format格式化
 
 ##### isalpha() #判断字符串是否是字母组成
 
-```
+```python
 'aBc'.isalpha()    #True
 'aB2'.isalpha()    #False
 ```
 
 ##### isdecimal() #判断字符串是否是十进制数字
 
-```
+```python
 '12'.isdecimal()   #True
 ```
 
 ##### isdigit() #判断字符串是否是数字组成
 
-```
+```python
 '123'.digit()    #True
 'a1x2'.digit()   #False
 ```
 
 ##### islower() #字母字符是否都是小写字母
 
-```
+```python
 'abc123'.islower()   #True
 'Aabc'.islower()     #False
 ```
@@ -216,7 +216,7 @@ format格式化
 
 ##### istitle()#字符串是否是标题化的
 
-```
+```python
 'This Is Op'.istitle()   #True
 'this Is Op'.istitle()   #False
 ```
@@ -227,7 +227,7 @@ format格式化
 
 ##### join()  #将一个序列以分隔符分割合并为一个字符串
 
-```
+```python
 ''.join(('a','b','c'))   #'abc'
 '_'.join(['a','b','c'])  #'a_b_c'
 ```
@@ -236,7 +236,7 @@ format格式化
 
 ##### split() #以指定字符串为分隔符分割一个字符串为一个列表
 
-```
+```python
 'abc'.split('b')       #['a','c']
 'a_b_c'.split('_')     #['a','b','c']
 'a_b_c'.split('_',1)   #['a','b_c']
@@ -258,7 +258,7 @@ format格式化
 
 ##### translate() #根据规则进行转换
 
-```
+```python
 res=str.maketrans('abcd','1234')    #设置规则
 'abcd'.translate(res)     #'1234'
 'abcA'.translate(res)     #'123A'
@@ -268,7 +268,7 @@ res=str.maketrans('abcd','1234')    #设置规则
 
 ##### replace() #对应替换
 
-```
+```python
 'abc'.replace('b','B')    #'aBc'
 ```
 
@@ -278,7 +278,7 @@ res=str.maketrans('abcd','1234')    #设置规则
 
 ##### strip() #脱掉字符串两端的指定字符串
 
-```
+```python
 'abc\n'.strip()      #'abc'
 'abca'.strip('a')    #'bc'
 
@@ -297,7 +297,7 @@ print(a)       #'abc'
 
 ##### zfill()#右对齐，不足填0
 
-```
+```python
 'abc'.zfill(5)    #'00abc'
 ```
 

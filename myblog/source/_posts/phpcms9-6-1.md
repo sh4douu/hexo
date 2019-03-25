@@ -71,7 +71,7 @@ categories: 漏洞复现
 - Github：`https://github.com/sh4douu/PoC-and-Exp/blob/master/phpcmsv961.py`
 - 代码：
 
-```
+```python
 import requests
 import re
 import sys
