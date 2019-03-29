@@ -4,7 +4,7 @@ date: 2019-03-18 16:50:44
 tags:
 	- Python基础
 	- Language
-categories: 语言
+categories: Python
 ---
 
 ### 0x00 字符串概述

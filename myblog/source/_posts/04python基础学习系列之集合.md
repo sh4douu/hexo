@@ -4,7 +4,7 @@ date: 2019-03-19 16:27:06
 tags: 
 	- Python基础
 	- Language
-categories: 语言
+categories: Python
 ---
 
 ### 0x00 集合概述

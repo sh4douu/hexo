@@ -5,7 +5,7 @@ tags:
 	- Python基础
 	- Language
 categories:
-	- 语言
+	- Python
 ---
 
 ### 可变类型与不可变类型
