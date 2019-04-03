@@ -6,7 +6,7 @@ tags:
 categories: 内网渗透
 ---
 
-#### 0x00 Kerberos
+### 0x00 Kerberos
 
 ![](02-Windows认证之Kerberos\cerberus.jpg)
 
@@ -18,7 +18,7 @@ Windows的AD域环境使用Kerberos来进行验证。
 
 <!-- more -->
 
-#### 0x01 Long-term Key与Short-term Key
+### 0x01 Long-term Key与Short-term Key
 
 在 Security 领域中，有的密钥可能长期保持不变，比如你的密码，可能几年都不曾改变，这样的 Key 被称为 `Long-term Key`。
 
@@ -38,7 +38,7 @@ Kerberos认证的第一阶段和第二阶段其实就是协商出通信所需的
 
 在Kerberos认证中，`Short-term Ke`被称为`Session Key`。而Windows用户的密码就是我们前面说的`Long-term Key`，它以`NTLM Hash`方式存储在服务器中。
 
-#### 0x02 KDC(Key Distribution Center)
+### 0x02 KDC(Key Distribution Center)
 
 KDC(Key Distribution Center)，即密钥分发中心，作为第三方信任机构为C/S提供认证。
 
@@ -51,7 +51,7 @@ KDC负责管理票据、认证票据、分发票据，但是KDC不是一个独�
 
 AD(Account Database)，它作为账户管理数据库，用与存储用户认证信息，即密码的`NTLM Hash`等。
 
-#### 0x03 Kerberos认证大致流程
+### 0x03 Kerberos认证大致流程
 
 ![](02-Windows认证之Kerberos\1070321-20180417175541960-360210611.png)
 
@@ -65,14 +65,16 @@ AD(Account Database)，它作为账户管理数据库，用与存储用户认证
 
 第三阶段（CS EXchange）：Client与Server之间验证并使用`K(c,s)`加密通信。
 
-#### 0x04 Kerberos认证第一阶段：Authentication Service Exchange
+### 0x04 Kerberos认证第一阶段：Authentication Service Exchange
+
+![](02-Windows认证之Kerberos\QQ截图20190403201648.png)
 
 **KRB_AS_REQ**
 
 首先，客户端发送请求给KDC AS，请求消息包含以下三部分：
 
-> - `Pre-authentication data`：用以证明Client身份的信息，它的内容是一般是被Client的`NTLM Hash`加密过的 `Timestamp`。
-> - `Client name & realm`：Client自身信息，简单地说就是 `DomainName\Username`。
+> - `Pre-authentication data`：用以证明Client身份的信息，它的内容是一般是被Client的`NTLM Hash`加密的 `Timestamp`。
+> - `Client name & realm`：Client自身信息，简单地说就是 `DomainName\Username`，KDC AS用其查找AD数据库看用户是否存在。
 > - `Server Name`：注意这里的ServerName并不是Client实际想要通信的Server，而是KDC TGS服务器的名称。
 
 **KRB_AS_REP**
@@ -85,7 +87,7 @@ KDC收到请求消息后，根据提供的用户名在`AD(Account Database)`中�
 
 对于给KDC TGS的那份`Session Key`，KDS AS会从`AD(Account Database)`中获取`krbtgt`用户的`NTLM Hash`对其及其它信息进行加密，称为TGT（Ticket Granting Ticket）。
 
-> - TGT中除了`Session Key`，还包括一些Client的用户（DomainName\Username）、End time（TGT 到期的时间）等信息。
+> - TGT中除了`Session Key`，还包括一些Client的用户名（DomainName\Username）、End time（TGT 到期的时间）等信息。
 > - `krbtgt`用户是在新建一台域控制器时，由系统自动创建使得，用于Kerberos认证用的。因此TGT只有KDC能解密。
 
 虽然产生的TGT是用于给KDC TGS的，但是KDC还是会把两份都发给Client，KDC TGS那份由Client发给KDC TGS。之所以这样做的目的是：
@@ -93,7 +95,9 @@ KDC收到请求消息后，根据提供的用户名在`AD(Account Database)`中�
 > - 首先Server不用维护一张庞大的会话密钥列表来应付不同的Client的访问，降低了Server的负荷；
 > - 其次避免出现因为网络延时，Client的认证请求比Server的会话密钥早到达Server端，进而导致认证失败的情况。
 
-#### Kerberos认证第二阶段：Ticket Granting Service Exchange
+### 0x05 Kerberos认证第二阶段：Ticket Granting Service Exchange
+
+![](02-Windows认证之Kerberos\QQ截图20190403202909.png)
 
 **KRB_TGS_REQ**
 
@@ -124,7 +128,7 @@ KDC TGS收到消息后，先使用自己（krbtgt）的`NTLM Hash`对TGT进行�
 
 验证通过后，KDC TGS会生成一个`Session Key`，记`K(c,s)`，该`Session Key`用于给Client和Server通信使用。
 
-将Client的`NTLM Hash`加密`K(c,s)`，用于给Client。
+将`K(c,tgs)`加密`K(c,s)`，用于给Client。
 
 同时也会生成一个Tiket用于给Server，并用Server的`NTLM Hash`加密该Tiket。Tiket包含：
 
@@ -134,7 +138,7 @@ KDC TGS收到消息后，先使用自己（krbtgt）的`NTLM Hash`对TGT进行�
 
 可以发现这个阶段与上一个阶段是类似，KDC同样会把这两份加密了的`Session Key`都发给Client。
 
-#### Kerberos认证第三阶段：Client/Server Exchange
+### 0x06 Kerberos认证第三阶段：Client/Server Exchange
 
 **KRB_AP_REQ**
 
