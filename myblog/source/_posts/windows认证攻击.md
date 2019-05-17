@@ -44,6 +44,9 @@ Mimikatz是法国人Gentil Kiwi编写的一款Windows平台下的神器，它具
 - Smbexec
 - Metasploit
 - CrackMapExec
+- Mimikatz
+
+> mimikatz “privilege::debug” “sekurlsa::pth /user:abc /domain:test.local /aes256:f74b379b5b422819db694aaf78f49177ed21c98ddad6b0e246a7e17df6d19d5c”
 
 接下来我们使用最后两个工具来模拟进行哈希传递攻击。
 
@@ -82,7 +85,35 @@ crackmapexec  smb  <IP>  -u <Username>  -H <NT hash>  -x "cmd"
 
 ![](windows认证攻击\QQ截图20190405101817.png)
 
-### 0x02 毒化与中间人攻击
+**注意：**
+
+如果目标机器安装了KB2871997补丁，那么将不能进行PTH攻击。
+
+查看主机安装了哪些补丁，Powershell下：
+
+> Get-WmiObject -class 'win32_quickfixengineering'
+
+一些例外：
+
+1.即使打了补丁，rid为500（即管理员，administrator）的用户仍可被PTH。
+
+2.安装补丁kb2871997的Win 7/2008 r2/8/2012，可以使用AES keys代替NTLM Hash。在mimikatz抓hash时，可以一并抓到。
+
+> mimikatz “privilege::debug” “sekurlsa::pth /user:a /domain:test.local /aes256:f74b379b5b422819db694aaf78f49177ed21c98ddad6b0e246a7e17df6d19d5c”
+
+**参考资料**
+
+https://mp.weixin.qq.com/s/9EUIamh3L87OWy_uqoJXCw
+
+https://mp.weixin.qq.com/s/LZqkclPiZOBtpJJFTiEvQQ
+
+### 0x02 Net-NTLM Hash relay attack
+
+我们知道在网络认证的过程中，数据包传递的并不是NTLM Hash，而是基于NTLM Hash加密challenge随机数得到的Net-NTLM Hash，意味着我们可以通过毒化攻击/中间人攻击获得Net-NTLM Hash,然后对该Hash进行爆破，或者直接使用该Hash进行重放攻击。这小节主要是进行重放攻击。
+
+首先我们知道，SMB、HTTP、LDAP、MSSQL等协议都可以使用NTLM协议进行认证。
+
+**主机名称解析流程：**
 
 在同一内网环境下，当一台Win机器向另一台Win机器以主机名（hostname）的形式请求相应的资源时,正常的通信大致流程如下：
 
@@ -105,6 +136,13 @@ crackmapexec  smb  <IP>  -u <Username>  -H <NT hash>  -x "cmd"
 > 2、NetBIOS在WindowsNT以后的所有操作系统上均可用，而只有Windows Vista和更高版本才支持LLMNR；
 >
 > 3、LLMNR还支持IPv6，而NetBIOS不支持。
+
+**窃取Net-NTLM Hash**
+
+> - Windows下可以使用Inveigh工具
+> - 在Linux下可以使用Responder。
+>
+> - metasploit也有auxiliary/spoof/llmnr/llmnr_response、auxiliary/spoof/mdns/mdns_response等模块。
 
 **Responder**
 
@@ -190,9 +228,11 @@ Options:
 
 ![](windows认证攻击\QQ截图20190408141627.png)
 
-使用Hashcat破解：
-
 **参考链接：**
+
+https://mp.weixin.qq.com/s/2CYuNRQIzIDWlU7nWiJ67w
+
+https://2018.zeronights.ru/wp-content/uploads/materials/08-Ntlm-Relay-Reloaded-Attack-methods-you-do-not-know.pdf
 
 https://www.secpulse.com/archives/65503.html
 

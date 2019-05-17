@@ -305,6 +305,14 @@ administrator::192.168.1.102:79f3c64adead4f15:09684aaf9d328a4cc23c301d7061232d:0
 > - Challage长度：NTLM v1的Challenge有8位，NTLM v2的Challenge为16位。
 > - 加密Challenge的算法：NTLM v1的主要加密算法是DES，NTLM v2的主要加密算法是HMAC-MD5。
 
+**使用NTLM协议进行认证的协议：**
+
+- SMB
+- HTTP
+- LDAP
+- MSSQL
+- ....
+
 ### 0x05 Pass The Hash
 
 观察NTLM认证的过程可以发现，整个过程中实际上并没有进行明文密码的传递，也没有使用明文密码来加密Challenge，而是用明文密码对应`NT Hash`来加密`Challenge`，那么就意味着：
